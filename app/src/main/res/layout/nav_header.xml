@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="176dp"
+    android:gravity="bottom"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:padding="8dp"
+    android:background="@color/colorPrimary"
+    >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="90"
+        android:src="@drawable/poultrylogo"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="17dp"
+        android:paddingTop="8dp"
+        android:layout_weight="10"
+        android:paddingLeft="16dp"
+        android:text="username" />
+</LinearLayout>

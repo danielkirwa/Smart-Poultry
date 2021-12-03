@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Smart Poultry</string>
+    <string name="sub_title">Chicken farm guide</string>
+    <string name="null_string">null</string>
+    <string name="egg_title">Eggs</string>
+    <string name="chicken_title">Chicken</string>
+    <string name="chick_title">Chicks</string>
+    <string name="disease_title">Diseases</string>
+    <string name="vaccine_title">Vaccination</string>
+    <string name="recodes_title">Reports</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+</resources>

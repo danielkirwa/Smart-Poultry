@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".AuthActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:id="@+id/login_layout"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/potrait"
+            android:layout_marginBottom="64dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textSize="22dp"
+            android:gravity="center"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_input"
+            android:layout_marginTop="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textSize="22dp"
+            android:gravity="center"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_input"
+            android:inputType="numberPassword"
+            android:layout_marginTop="8dp"/>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login now"
+            android:background="@drawable/my_button"
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp"
+            android:layout_marginTop="16dp"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Forgot password"
+            android:background="#00000000"
+            android:textColor="@color/colorDordgerblue"
+            android:textSize="18sp"
+            android:gravity="end"
+            android:layout_marginTop="24dp"
+            />
+        <Button
+            android:id="@+id/call_registration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create account now"
+            android:background="#00000000"
+            android:textColor="@color/colorDordgerblue"
+            android:textSize="18sp"
+            android:gravity="start"
+            android:layout_marginTop="24dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:id="@+id/registration_layout"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/potrait"
+            android:layout_marginBottom="64dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="First name"
+            android:textSize="22dp"
+            android:gravity="center"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_input"
+            android:layout_marginTop="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Other name"
+            android:textSize="22dp"
+            android:gravity="center"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_input"
+            android:layout_marginTop="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:textSize="22dp"
+            android:gravity="center"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_input"
+            android:inputType="phone"
+            android:layout_marginTop="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="22dp"
+            android:gravity="center"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/my_input"
+            android:layout_marginTop="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textSize="22dp"
+            android:gravity="center"/>
+        <Spinner
+            android:id="@+id/region_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_spinner"
+            android:layout_marginTop="8dp"/>
+        <Spinner
+            android:id="@+id/county_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_spinner"
+            android:layout_marginTop="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textSize="18dp"
+            android:gravity="center"/>
+        <EditText
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_input"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:layout_marginTop="8dp"/>
+        <EditText
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_input"
+            android:inputType="textPassword"
+            android:hint="Confirm password"
+            android:layout_marginTop="8dp"/>
+        <Button
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create account now"
+            android:background="@color/colorDordgerblue"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"
+            />
+        <Button
+            android:id="@+id/call_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login instead"
+            android:background="#00000000"
+            android:textColor="@color/colorDordgerblue"
+            android:textSize="18sp"
+            android:gravity="end"
+            android:layout_marginTop="24dp"
+            />
+    </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+    <group android:checkableBehavior="single">
+        <item android:title="Housing"
+            android:icon="@drawable/ic_housing"
+            />
+        <item android:title="Feeds production"
+            android:icon="@drawable/ic_feeds"
+            />
+        <item android:title="Development"
+            android:icon="@drawable/ic_development"
+            />
+    </group>
+    <item android:title="More Features">
+        <menu>
+            <item android:title="App guide"
+                android:icon="@drawable/ic_guide"
+                />
+            <item android:title="App setting"
+                android:icon="@drawable/ic_settings"
+                />
+        </menu>
+    </item>
+    <item android:title="Action">
+        <menu>
+            <item android:title="Logout"
+                android:icon="@drawable/ic_logout_24dp"
+                />
+        </menu>
+    </item>
+
+</menu>
