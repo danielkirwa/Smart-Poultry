@@ -25,6 +25,7 @@
                  android:layout_marginLeft="10dp"
                  android:text="Total Chicken    :"/>
              <TextView
+                 android:id="@+id/total_chicken_display"
                  android:layout_width="0dp"
                  android:layout_height="wrap_content"
                  android:layout_weight="1"
@@ -40,6 +41,7 @@
             android:padding="16dp"
             android:orientation="vertical">
             <EditText
+                android:id="@+id/txt_flock_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="flock name"
@@ -57,25 +59,29 @@
 
                 />
             <EditText
+                android:id="@+id/txt_flock_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Chicken number"
+                android:inputType="number"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/my_input"
                 android:layout_marginTop="16dp"
                 />
+
             <EditText
+                android:id="@+id/txt_flock_modeacq"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Acquisition mode"
                 android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/my_input"
-                android:layout_marginTop="16dp"
-                />
+                android:hint="Acquisition mode" />
+
             <EditText
-                android:id="@+id/etdate"
+                android:id="@+id/etchickendate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Date of acquisition"
@@ -86,7 +92,7 @@
 
                 />
             <EditText
-                android:id="@+id/txtacquisitiondate"
+                android:id="@+id/txt_acquisition_note"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:hint="Note"
@@ -100,6 +106,7 @@
                 />
 
             <Button
+                android:id="@+id/save_flock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Add flock"
@@ -110,6 +117,16 @@
                 android:background="@drawable/my_button"
 
                 />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="view all"
+                android:id="@+id/btn_view_chicken"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Delete flock"
+                android:id="@+id/btn_delete_chicken"/>
         </LinearLayout>
 
 

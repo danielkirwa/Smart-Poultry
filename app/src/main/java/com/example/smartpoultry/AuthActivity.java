@@ -127,7 +127,8 @@ public class AuthActivity extends AppCompatActivity {
             }else if(countynumber ==8){
 
             }else{
-
+                countyloaction.clear();
+                countyloaction.add("Select your County");
             }
     }
 }
