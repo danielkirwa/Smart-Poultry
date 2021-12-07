@@ -37,7 +37,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/chicken_flock_name_spinner"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/my_spinner"
+
+                />
             <EditText
+                android:id="@+id/txt_eggs_tray"
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Number of Tray"
@@ -46,16 +57,21 @@
                 android:background="@drawable/my_input"
                 android:layout_marginTop="16dp"
                 />
+
             <EditText
+                android:id="@+id/txt_egg_not_tray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Eggs NOT in Tray"
+                android:inputType="number"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/my_input"
                 android:layout_marginTop="16dp"
                 />
             <EditText
+                android:id="@+id/txt_bad_eggs"
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Bad eggs"
@@ -66,22 +82,35 @@
                 />
 
             <EditText
-                android:id="@+id/txtacquisitiondate"
+                android:id="@+id/txt_egg_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Date of collection"
                 android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/my_input"
-                android:layout_marginTop="16dp"
+                android:hint="Date of collection"
 
 
                 />
 
             <Button
+                android:id="@+id/btn_add_eggs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Add eggs"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/my_button"
+
+                />
+            <Button
+                android:id="@+id/btn_view_eggs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View eggs"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginLeft="16dp"

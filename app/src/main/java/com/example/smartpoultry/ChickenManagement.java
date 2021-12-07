@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,13 +23,12 @@ import java.util.Calendar;
 
 
 public class ChickenManagement extends AppCompatActivity {
-    DbHelper myDb;
+    ChickDao chickDao;
 EditText etcheckenDate,flockname,flocknumber,flockmode,flocknote;
 Spinner chickenspinner;
 Button btnaddflock,btnviewchicken,btndeletechicken;
 TextView totalfocknumber;
     String flockbread;
-    String deletechickenkey;
 DatePickerDialog.OnDateSetListener setListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,9 @@ DatePickerDialog.OnDateSetListener setListener;
         totalfocknumber = findViewById(R.id.total_chicken_display);
         btnviewchicken = findViewById(R.id.btn_view_chicken);
         btndeletechicken = findViewById(R.id.btn_delete_chicken);
-        myDb  = new DbHelper(this);
+
+        ChickDatabase chickDatabase = ChickDatabase.getInstance(getApplicationContext());
+        chickDao = chickDatabase.chickDao();
 
 
         Calendar calendar = Calendar.getInstance();
@@ -100,66 +102,25 @@ DatePickerDialog.OnDateSetListener setListener;
 
             }
         });
-        //insert checken to database
+
         btnaddflock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Toast.makeText(ChickenManagement.this, "Inserted" + flocknote.getText().toString(), Toast.LENGTH_SHORT).show();
+                Chicken chicken = new Chicken(0,flockname.getText().toString(),flockbread,flocknumber.getText().toString(),flockmode.getText().toString(),etcheckenDate.getText().toString(),flocknote.getText().toString());
 
-               boolean isinserted =  myDb.inserflock(flockname.getText().toString(),flockbread,flocknumber.getText().toString(),flockmode.getText().toString(),etcheckenDate.getText().toString(),flocknote.getText().toString());
-
-                if (isinserted == true){
-                    showMessage("Success","New flock added");
-
-                }else{
-                    showMessage("Error","fail to add flock");
-                }
+                insertChicken(chicken);
             }
         });
 
-//  select all flocks
 
-            btnviewchicken.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Cursor chickenres = myDb.getAllChickenData();
-
-                    if(chickenres.getCount() == 0){
-                        // error message
-                        showMessage("Information","No flock added not");
-                        return;
-                    }else{
-                        StringBuffer buffer = new StringBuffer();
-
-                        while (chickenres.moveToNext()){
-                            buffer.append("Id :" + chickenres.getString(0)+"\n");
-                            buffer.append("Name :" + chickenres.getString(1)+"\n");
-                            buffer.append("Bread :" + chickenres.getString(2)+"\n");
-                            buffer.append("Number :" + chickenres.getString(3)+"\n\n");
-                            buffer.append("Mode :" + chickenres.getString(4)+"\n");
-                            buffer.append("Date :" + chickenres.getString(5)+"\n\n");
-                            buffer.append("Note :" + chickenres.getString(6)+"\n");
-
-                        }
-                        // show all data
-                        showMessage("Flocks",buffer.toString());
-                    }
-
-                }
-            });
-            // delete chicken flock
-        btndeletechicken.setOnClickListener(new View.OnClickListener() {
+        btnviewchicken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deletechickenkey = flockname.getText().toString();
-                if(deletechickenkey.equals("")){
-                    showMessage("Error","Enter flock id");
-                }else{
-                    myDb.detelechickenflock(Integer.parseInt(deletechickenkey));
-                    showMessage("Information","flock deleted");
-                }
+                showMessage("Chicks", chickDao.getAllChicken().get(0).flockNumber);
             }
         });
+
+
 
     }
 
@@ -171,6 +132,26 @@ DatePickerDialog.OnDateSetListener setListener;
         builder.setTitle(title);
         builder.setMessage(message);
         builder.show();
+    }
+
+
+    public void insertChicken(Chicken chicken){
+        new InsertChickenAsynTask(chickDao).execute(chicken);
+        Toast.makeText(getApplication(), "Added Chicken", Toast.LENGTH_SHORT).show();
+    }
+    private static class InsertChickenAsynTask extends AsyncTask<Chicken,Void,Void> {
+
+        private ChickDao chickDao;
+
+        private InsertChickenAsynTask(ChickDao chickDao){
+            this.chickDao = chickDao;
+        }
+
+        @Override
+        protected Void doInBackground(Chicken... chickens) {
+            chickDao.insertChicken(chickens[0]);
+            return null;
+        }
     }
 
 }

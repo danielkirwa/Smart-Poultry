@@ -64,9 +64,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
 
-        db.execSQL(query);
-        db.execSQL(querychicktable);
 
+        db.execSQL(querychicktable);
+        db.execSQL(query);
 
        // db.execSQL("create table " + TABLE_CHICKEN +" ("+CHICKEN_ID+" INTEGER PRIMARY KEY AUTOINCREMENT ,"+CHICKEN_NAME+" TEXT,"+CHICKEN_NUMBER+" TEXT,"+CHICKEN_MODEACQ+"TEXT,"+CHICKEN_DATE+"TEXT,"+CHICKEN_NOTE+"TEXT,"+CHICKEN_BREAD+"TEXT)");
     }
@@ -74,6 +74,7 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL( "DROP TABLE IF EXISTS " + TABLE_CHICKEN);
+        db.execSQL( "DROP TABLE IF EXISTS " + TABLE_CHICK);
         onCreate(db);
     }
 
@@ -133,6 +134,12 @@ public class DbHelper extends SQLiteOpenHelper {
         }else{
             return true;
         }
+    }
+    // select chick data
+    public Cursor getAllChickData(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor chickres = db.rawQuery("select * from "+TABLE_CHICK,null);
+        return  chickres;
     }
 
 }

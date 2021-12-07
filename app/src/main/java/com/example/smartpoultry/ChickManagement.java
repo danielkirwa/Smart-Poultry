@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,11 +20,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class ChickManagement extends AppCompatActivity {
-    DbHelper myDb;
+
     Spinner chickspinner,chickagespinner;
     EditText etchickDate,chickname,chicknumber,txtmodeacq,txtdateacq,txtchicknote;
     String chickbread,chickage;
-    Button btnaddchick;
+    Button btnaddchick,btnviewchick;
+
+    ChickDao chickDao;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chick_management);
@@ -35,8 +39,12 @@ public class ChickManagement extends AppCompatActivity {
         txtmodeacq = findViewById(R.id.txt_chick_modeacq);
         txtdateacq = findViewById(R.id.etchickdate);
         txtchicknote = findViewById(R.id.txt_chick_note);
+        btnviewchick = findViewById(R.id.btn_view_chick);
 
-        myDb  = new DbHelper(this);
+
+        ChickDatabase chickDatabase = ChickDatabase.getInstance(getApplicationContext());
+        chickDao = chickDatabase.chickDao();
+
 
 
         Calendar calendar = Calendar.getInstance();
@@ -118,21 +126,29 @@ public class ChickManagement extends AppCompatActivity {
             }
         });
 
-        //insert check to database
+        //insert chick to database
         btnaddchick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                boolean isinserted =  myDb.inserchickflock(chickname.getText().toString(),chickbread,chicknumber.getText().toString(),
-                        txtmodeacq.getText().toString(),chickage,etchickDate.getText().toString(),txtchicknote.getText().toString());
+                Chick chick = new Chick(0,chickname.getText().toString(),chickbread,chicknumber.getText().toString(),txtmodeacq.getText().toString(),chickage,etchickDate.getText().toString(),txtchicknote.getText().toString());
 
-                if (isinserted == true){
-                    showMessage("Success","New chick flock added");
+                insertChick(chick);
 
-                }else{
-                    showMessage("Warning","Fail to add flock" );
-                }
+            }
+        });
+
+        btnviewchick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                showMessage("Chicks", chickDao.getAllChicks().get(1).getFlockName());
+
+
+
             }
         });
 
@@ -148,5 +164,27 @@ public class ChickManagement extends AppCompatActivity {
         builder.setTitle(title);
         builder.setMessage(message);
         builder.show();
+    }
+
+
+
+    public void insertChick(Chick chick){
+        new InsertChickAsynTask(chickDao).execute(chick);
+        Toast.makeText(getApplication(), "Added chick", Toast.LENGTH_SHORT).show();
+    }
+
+    private static class InsertChickAsynTask extends AsyncTask<Chick,Void,Void> {
+
+        private ChickDao chickDao;
+
+        private InsertChickAsynTask(ChickDao chickDao){
+            this.chickDao = chickDao;
+        }
+
+        @Override
+        protected Void doInBackground(Chick... chicks) {
+            chickDao.insertChick(chicks[0]);
+            return null;
+        }
     }
 }

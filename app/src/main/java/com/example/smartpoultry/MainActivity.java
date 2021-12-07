@@ -18,7 +18,7 @@ import android.util.Pair;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static  int SPLASH_SCREEN = 4000;
+    private static  int SPLASH_SCREEN = 3000;
 
     Animation topAnim,bottomAnim;
     ImageView image;
