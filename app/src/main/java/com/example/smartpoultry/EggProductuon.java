@@ -1,10 +1,12 @@
 package com.example.smartpoultry;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.os.AsyncTask;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,23 +16,37 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
-public class EggProductuon extends AppCompatActivity {
+public class EggProductuon extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    DbHelper dbHelper;
+    EggsAdapter eggsAdapter;
  Spinner chickflockname;
  String flockname;
- ChickDao chickDao;
- Button btnaddegg,btnviewegg;
+ Button btnaddegg,btnviewegg,toggleeggview;
  EditText numberottray,numberofnottray,numberbadegg,datecollected;
+ LinearLayout addegg,availableegg;
+    RecyclerView recyclerView;
+    ArrayList<String> name,goodeggs,badeggs,dateeggs;
+    TextView totaleggs,totalgoodeggs,totalbadeggs,totalcollection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_egg_productuon);
 
+        dbHelper = new DbHelper(this);
+
+
+        toggleeggview = findViewById(R.id.toggle_view_egg);
+        addegg = findViewById(R.id.add_new_egg);
+        availableegg = findViewById(R.id.available_egg_layout);
         chickflockname = findViewById(R.id.chicken_flock_name_spinner);
         numberottray = findViewById(R.id.txt_eggs_tray);
         numberofnottray = findViewById(R.id.txt_egg_not_tray);
@@ -38,8 +54,35 @@ public class EggProductuon extends AppCompatActivity {
         btnaddegg = findViewById(R.id.btn_add_eggs);
         btnviewegg = findViewById(R.id.btn_view_eggs);
         datecollected = findViewById(R.id.txt_egg_date);
-        ChickDatabase chickDatabase = ChickDatabase.getInstance(getApplicationContext());
-        chickDao = chickDatabase.chickDao();
+        totaleggs = findViewById(R.id.tv_total_eggs);
+        totalgoodeggs = findViewById(R.id.tv_total_good_egg);
+        totalbadeggs = findViewById(R.id.tv_total_bad_egg);
+        totalcollection = findViewById(R.id.tv_total_egg_collection);
+
+        // hide add egg view by default
+        addegg.setVisibility(View.GONE);
+        // display snapshot of sum of data in database
+        try {
+            int totalNumberOfEggs = dbHelper.BadEggSum() + dbHelper.GoodEggSum();
+            totaleggs.setText(""+ totalNumberOfEggs);
+            totalgoodeggs.setText(String.format("Total Good Eggs: %s",dbHelper.GoodEggSum()));
+            totalbadeggs.setText("Total Bad Eggs : " + dbHelper.BadEggSum());
+            totalcollection.setText("Collections : " + dbHelper.EggCollectionCount());
+        }catch(Exception ex){
+            //Toast.makeText(this, "Error" + ex, Toast.LENGTH_SHORT).show();
+            showMessage("Egg Producton Error " , "Message : "+ ex.getMessage());
+        }
+
+
+        chickflockname.setOnItemSelectedListener(this);
+        loadSpinner();
+
+        toggleeggview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleeggview();
+            }
+        });
 
 
         // add date picker
@@ -84,6 +127,7 @@ public class EggProductuon extends AppCompatActivity {
 
                     }else{
                         showMessage("Tray contains 30 eggs","Value should be less than 30");
+                        numberofnottray.setText("");
                     }
                 }
 
@@ -96,29 +140,18 @@ public class EggProductuon extends AppCompatActivity {
         });
 
 
-        // spinner array breads
+        // initilize array list
+        name = new ArrayList<>();
+        goodeggs = new ArrayList<>();
+        badeggs = new ArrayList<>();
+        dateeggs = new ArrayList<>();
 
-        final ArrayList<String> chickenName = new ArrayList<>();
-        chickenName.add("Select Flock Name");
-        chickenName.add("Flock one");
-        chickenName.add("Flock two");
-        chickenName.add("Flock  three");
-        chickenName.add("Flock four");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,chickenName);
-        chickflockname.setAdapter(adapter);
-        chickflockname.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        recyclerView = findViewById(R.id.egg_recycler_view);
+        eggsAdapter = new EggsAdapter(this,name,goodeggs,badeggs,dateeggs);
+        recyclerView.setAdapter(eggsAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        displayalleggcollection();
 
-                flockname = chickenName.get(position);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         btnaddegg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,9 +159,22 @@ public class EggProductuon extends AppCompatActivity {
                 int totaleggs = 0;
                 totaleggs = (Integer.parseInt(numberottray.getText().toString())*30) + Integer.parseInt(numberofnottray.getText().toString());
 
-                Eggs eggs = new Eggs(0,flockname,totaleggs,numberbadegg.getText().toString(),datecollected.getText().toString());
+                try {
+                    boolean isInserted = dbHelper.insertEggs(flockname,totaleggs+"",numberbadegg.getText().toString(),datecollected.getText().toString());
 
-                insertEgg(eggs);
+                    if (isInserted == true) {
+                        //Toast.makeText(EggProductuon.this, "Egg collection added", Toast.LENGTH_SHORT).show();
+                        showMessage("Egg Production Success " , "Message :Egg details save successfully ");
+                        resetForm();
+                    } else {
+                        //Toast.makeText(EggProductuon.this, "Egg collection not added", Toast.LENGTH_SHORT).show();
+                        showMessage("Egg Production Error " , "Message : Failed to save egg collection details try again ");
+                        resetForm();
+                    }
+                }catch (Exception ex){
+                    //Toast.makeText(EggProductuon.this, "Error" +  ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    showMessage("Egg Production Error " , "Message : " + ex.getMessage());
+                }
             }
         });
 
@@ -139,11 +185,7 @@ public class EggProductuon extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
-                showMessage("Eggs", chickDao.getAllEggs().get(0).flockName);
-
-
+             // view gg
 
             }
         });
@@ -152,33 +194,83 @@ public class EggProductuon extends AppCompatActivity {
 
     }
 
+    private void displayalleggcollection() {
+        Cursor cursor = dbHelper.getAllEggsData();
+        if (cursor.getCount() == 0){
+            Toast.makeText(this, "No Egg collected yet", Toast.LENGTH_SHORT).show();
+            return;
+        }else{
+            while(cursor.moveToNext()){
+                name.add(cursor.getString(1));
+                goodeggs.add(cursor.getString(2));
+                badeggs.add(cursor.getString(3));
+                dateeggs.add(cursor.getString(4));
+
+            }
+        }
+    }
+
+    // toggle view in egg activity
+    public void toggleeggview(){
+        if (addegg.getVisibility() == View.GONE){
+            availableegg.setVisibility(View.GONE);
+            addegg.setVisibility(View.VISIBLE);
+            toggleeggview.setText("View Eggs");
+            toggleeggview.setTextSize(16);
+        }else{
+            availableegg.setVisibility(View.VISIBLE);
+            addegg.setVisibility(View.GONE);
+            toggleeggview.setText("+");
+            toggleeggview.setTextSize(32);
+
+        }
+
+    }
+
     // custom popup
-    public  void showMessage(String title,String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+
+    private void loadSpinner(){
+        try {
+            List<String> lables = dbHelper.getChickenFlockList();
+            // creating adapter for spinner
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lables);
+            // drop down layout style list view radio button
+            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            // attaching data to adapter to spinner
+            chickflockname.setAdapter(arrayAdapter);
+        }catch (Exception ex){
+            Toast.makeText(this, "Error" + ex, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String selectedFlockName = parent.getItemAtPosition(position).toString();
+        Toast.makeText(this, "Flock name is :"  + selectedFlockName, Toast.LENGTH_SHORT).show();
+        flockname = selectedFlockName;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
+    public void showMessage(String title,String message){
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(message);
+        builder.setIcon(getResources().getDrawable(R.drawable.chicks2));
+        builder.setPositiveButton("OK",null);
         builder.show();
     }
-
-    public void insertEgg(Eggs eggs){
-        new InsertEggAsynTask(chickDao).execute(eggs);
-        Toast.makeText(getApplication(), "Added eggs", Toast.LENGTH_SHORT).show();
+    public  void  resetForm(){
+        numberottray.setText("");
+        numberofnottray.setText("");
+        numberbadegg.setText("");datecollected.setText("");
     }
-    private static class InsertEggAsynTask extends AsyncTask<Eggs,Void,Void> {
-
-        private ChickDao chickDao;
-
-        private InsertEggAsynTask(ChickDao chickDao){
-            this.chickDao = chickDao;
-        }
-
-        @Override
-        protected Void doInBackground(Eggs... eggs) {
-            chickDao.insertEggg(eggs[0]);
-            return null;
-        }
-    }
-
 
 }

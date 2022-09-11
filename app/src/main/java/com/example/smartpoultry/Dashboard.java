@@ -1,5 +1,6 @@
 package com.example.smartpoultry;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,11 +10,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
 
 public class Dashboard extends AppCompatActivity {
     CardView btncallvaccination,btncallmedication,btncallegg,btncallchicken,btncallchick,btncallrecords;
     private DrawerLayout drawer;
+    NavigationView navigationView;
 
 
     @Override
@@ -93,6 +99,35 @@ public class Dashboard extends AppCompatActivity {
                 //finish();
             }
         });
+
+         navigationView = findViewById(R.id.nav_view);
+         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+             @Override
+             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                 switch (item.getItemId()){
+                     case R.id.menu_housing:
+                         Intent intenthousing = new Intent(Dashboard.this,PoultryHousing.class);
+                         startActivity(intenthousing);
+                         return true;
+                     case R.id.menu_feeds:
+                         Intent intentfeeds = new Intent(Dashboard.this,FeedFormulation.class);
+                         startActivity(intentfeeds);
+                         return true;
+                     case R.id.menu_development:
+                         Intent intentdevelopment = new Intent(Dashboard.this,PoultryDevelopment.class);
+                         startActivity(intentdevelopment);
+                         return true;
+                     case R.id.menu_guide:
+                         Intent intentappguide = new Intent(Dashboard.this,AppGuide.class);
+                         startActivity(intentappguide);
+                         return true;
+                 }
+                 return true;
+             }
+         });
+
+
+
     }
 
 
@@ -105,4 +140,5 @@ public class Dashboard extends AppCompatActivity {
         }
 
     }
+
 }

@@ -1,8 +1,10 @@
 package com.example.smartpoultry;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -13,23 +15,35 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class ChickManagement extends AppCompatActivity {
-
+     DbHelper dbHelper;
+     ChickAdapter chickAdapter;
     Spinner chickspinner,chickagespinner;
     EditText etchickDate,chickname,chicknumber,txtmodeacq,txtdateacq,txtchicknote;
     String chickbread,chickage;
-    Button btnaddchick,btnviewchick;
+    Button btnaddchick,btnviewchick,togglechickview;
+    LinearLayout addchickview,availablechicks;
+    RecyclerView recyclerView;
+    ArrayList<String> name,number,bread,date_added,age;
+    TextView tvtotalChick,tvflockcount,tvtotalChick2;
 
-    ChickDao chickDao;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chick_management);
+
+        dbHelper = new DbHelper(this);
+
+        addchickview = findViewById(R.id.add_new_chick_flock);
+        availablechicks = findViewById(R.id.available_chick_layout);
+        togglechickview = findViewById(R.id.toggle_view_chick);
         chickspinner = findViewById(R.id.chick_spinner);
         chickagespinner = findViewById(R.id.chick_age_spinner);
         btnaddchick = findViewById(R.id.btn_add_chick);
@@ -40,11 +54,34 @@ public class ChickManagement extends AppCompatActivity {
         txtdateacq = findViewById(R.id.etchickdate);
         txtchicknote = findViewById(R.id.txt_chick_note);
         btnviewchick = findViewById(R.id.btn_view_chick);
+        tvtotalChick = findViewById(R.id.tv_total_chick);
+        tvflockcount = findViewById(R.id.tv_chick_flock_count);
+        tvtotalChick2 = findViewById(R.id.tv_total_chick_2);
 
 
-        ChickDatabase chickDatabase = ChickDatabase.getInstance(getApplicationContext());
-        chickDao = chickDatabase.chickDao();
+        addchickview.setVisibility(View.GONE);
+        // display snapshot of sum of data in database
+        try {
+            tvtotalChick.setText(String.format(": %s",dbHelper.ChickSum()));
+            tvtotalChick2.setText(String.format("Total Chicks: %s",dbHelper.ChickSum()));
+            tvflockcount.setText("Total flocks : " + dbHelper.ChickFlockCount());
+        }catch(Exception ex){
+            //Toast.makeText(this, "Error" + ex, Toast.LENGTH_SHORT).show();
+            showMessage("Chick Management Error ","Message : "+ ex.getMessage());
+        }
 
+         /// initialize array
+
+        name = new ArrayList<>();
+        number = new ArrayList<>();
+        bread = new ArrayList<>();
+        date_added = new ArrayList<>();
+        age = new ArrayList<>();
+        recyclerView = findViewById(R.id.chick_recycler_view);
+        chickAdapter = new ChickAdapter(this, name,number,bread,date_added,age);
+        recyclerView.setAdapter(chickAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        displayAllChickFlock();
 
 
         Calendar calendar = Calendar.getInstance();
@@ -69,7 +106,12 @@ public class ChickManagement extends AppCompatActivity {
         });
 
 
-
+         togglechickview.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 togglechickenview();
+             }
+         });
 
         // spinner array breads
 
@@ -130,11 +172,24 @@ public class ChickManagement extends AppCompatActivity {
         btnaddchick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    boolean isInserted = dbHelper.insertChick(chickname.getText().toString(), chickbread,
+                            chicknumber.getText().toString(), txtmodeacq.getText().toString(),
+                            chickage, txtdateacq.getText().toString(), txtchicknote.getText().toString());
 
-
-                Chick chick = new Chick(0,chickname.getText().toString(),chickbread,chicknumber.getText().toString(),txtmodeacq.getText().toString(),chickage,etchickDate.getText().toString(),txtchicknote.getText().toString());
-
-                insertChick(chick);
+                    if (isInserted == true) {
+                        //Toast.makeText(ChickManagement.this, "Chick flock added", Toast.LENGTH_SHORT).show();
+                        showMessage("Chick Management Success","Message : Chick flock details save successfully");
+                        resetForm();
+                    } else {
+                        //Toast.makeText(ChickManagement.this, "Chick flock not added", Toast.LENGTH_SHORT).show();
+                        showMessage("Chick Management Fail","Message : Failed to add chick flock details");
+                        resetForm();
+                    }
+                }catch (Exception ex){
+                    //Toast.makeText(ChickManagement.this, "Error" +  ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    showMessage("Chicken Management Error","Message : " + ex.getMessage());
+                }
 
             }
         });
@@ -143,11 +198,7 @@ public class ChickManagement extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
-                showMessage("Chicks", chickDao.getAllChicks().get(1).getFlockName());
-
-
+               // view chick
 
             }
         });
@@ -157,34 +208,64 @@ public class ChickManagement extends AppCompatActivity {
 
     }
 
-    // custom popup
-    public  void showMessage(String title,String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    private void displayAllChickFlock() {
+        Cursor cursor = dbHelper.getAllChickData();
+        if (cursor.getCount() == 0)
+        {
+            // Toast.makeText(this, "No Chick Flock yet", Toast.LENGTH_SHORT).show();
+            showMessage("Chick Management","No flock added yet");
+        }else{
+            while (cursor.moveToNext()){
+                name.add(cursor.getString(1));
+                bread.add(cursor.getString(2));
+                number.add(cursor.getString(3));
+                date_added.add(cursor.getString(6));
+                // compute age here
+                age.add(cursor.getString(5));
+
+
+            }
+
+        }
+    }
+
+    // toggle view in chick activity
+    public void togglechickenview(){
+        if (addchickview.getVisibility() == View.GONE){
+            availablechicks.setVisibility(View.GONE);
+            addchickview.setVisibility(View.VISIBLE);
+            togglechickview.setText("View Flock");
+            togglechickview.setTextSize(16);
+        }else{
+            availablechicks.setVisibility(View.VISIBLE);
+            addchickview.setVisibility(View.GONE);
+            togglechickview.setText("+");
+            togglechickview.setTextSize(32);
+
+        }
+
+    }
+
+
+    public void showMessage(String title,String message){
+        androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(message);
+        builder.setIcon(getResources().getDrawable(R.drawable.chicks2));
+        builder.setPositiveButton("OK",null);
         builder.show();
     }
-
-
-
-    public void insertChick(Chick chick){
-        new InsertChickAsynTask(chickDao).execute(chick);
-        Toast.makeText(getApplication(), "Added chick", Toast.LENGTH_SHORT).show();
+    public  void  resetForm(){
+        chickname.setText("");
+        chicknumber.setText("");
+        txtmodeacq.setText("");
+        txtchicknote.setText("");
     }
 
-    private static class InsertChickAsynTask extends AsyncTask<Chick,Void,Void> {
 
-        private ChickDao chickDao;
 
-        private InsertChickAsynTask(ChickDao chickDao){
-            this.chickDao = chickDao;
-        }
 
-        @Override
-        protected Void doInBackground(Chick... chicks) {
-            chickDao.insertChick(chicks[0]);
-            return null;
-        }
-    }
+
+
 }

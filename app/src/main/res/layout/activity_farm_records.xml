@@ -18,7 +18,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:textSize="20sp"
                 android:textColor="@color/colorWhite"
                 android:layout_marginTop="14dp"
@@ -27,11 +27,571 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:textSize="18sp"
                 android:textColor="@color/colorWhite"
                 android:layout_marginTop="14dp"
-                android:text="Report"/>
+                android:text="General report"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="3"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/my_linearlayout"
+                                android:padding="8dp"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:text="Farm Type "
+                                    android:gravity="center"
+                                    android:textStyle="bold"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorBlack"
+                                    android:layout_weight="3"
+                                    />
+                                <TextView
+                                    android:id="@+id/rp_farm_type"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
+                                    android:gravity="center"
+                                    android:textStyle="bold"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorBlack"
+                                    android:layout_weight="2"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:id="@+id/rp_large_type"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="18sp"
+                                        android:text="Large type "
+                                        android:gravity="center"
+                                        android:layout_gravity="center"
+                                        android:textColor="@color/colorBlack"
+                                        />
+                                    <TextView
+                                        android:id="@+id/rp_large_percent"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="18sp"
+                                        android:gravity="center"
+                                        android:layout_gravity="center"
+                                        android:textColor="@color/colorBlack"
+
+                                        />
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:id="@+id/rp_small_type"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="18sp"
+                                        android:text="Small type "
+                                        android:gravity="center"
+                                        android:layout_gravity="center"
+                                        android:textColor="@color/colorBlack"
+                                        />
+                                    <TextView
+                                        android:id="@+id/rp_small_percent"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="18sp"
+                                        android:gravity="center"
+                                        android:layout_gravity="center"
+                                        android:textColor="@color/colorBlack"
+
+                                        />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:contentDescription="@string/null_string"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/chicken2" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:text="Flocks Report "
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorBlack"
+                                />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:text="All Flocks: "
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="3"
+                                    />
+                                <TextView
+                                    android:id="@+id/rp_total_flocks"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="2"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:text="Chicken Flock : "
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="3"
+                                    />
+                                <TextView
+                                    android:id="@+id/rp_total_chicken_flock"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="2"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:text="Chicks Flock : "
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="3"
+                                    />
+                                <TextView
+                                    android:id="@+id/rp_total_chick_flock"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="2"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:text="All Poultry : "
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="3"
+                                    />
+                                <TextView
+                                    android:id="@+id/rp_total_poultry_number"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="2"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:text="Chicken Number : "
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="3"
+                                    />
+                                <TextView
+                                    android:id="@+id/rp_total_chicken_number"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="2"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:text="Chick Number : "
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="3"
+                                    />
+                                <TextView
+                                    android:id="@+id/rp_total_chick_number"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="2"
+                                    />
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            android:contentDescription="@string/null_string"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/eggs" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:text="Egg Collection "
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorBlack"
+                                />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:text="Collection : "
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="3"
+                                    />
+                                <TextView
+                                    android:id="@+id/rp_total_egg_collection"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="2"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:text="All Eggs Collected : "
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="3"
+                                    />
+                                <TextView
+                                    android:id="@+id/rp_total_egg_collected"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="2"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:text="Good Eggs collected : "
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="3"
+                                    />
+                                <TextView
+                                    android:id="@+id/rp_total_good_eggs"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="2"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:text="Bad Eggs Collected : "
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="3"
+                                    />
+                                <TextView
+                                    android:id="@+id/rp_total_bad_eggs"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="2"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:text="Average Eggs Collected : "
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="3"
+                                    />
+                                <TextView
+                                    android:id="@+id/rp_average_collection"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="2"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:text="Average Bad Eggs : "
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="3"
+                                    />
+                                <TextView
+                                    android:id="@+id/rp_average_bad_eggs"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="2"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:text="Damage Rate : "
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="3"
+                                    />
+                                <TextView
+                                    android:id="@+id/rp_egg_damage_rate"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="18sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/colorDarkdOrange"
+                                    android:layout_weight="2"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
         </LinearLayout>
 
 

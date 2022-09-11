@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/available_egg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="5dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/null_string"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/eggs" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/rveggs_flock_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:textColor="@color/colorDarkdOrange"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:text="Good eggs : "
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorDarkdOrange"
+                                android:layout_weight="3"
+                                />
+                            <TextView
+                                android:id="@+id/rv_good_eggs"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorDarkdOrange"
+                                android:layout_weight="2"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:text="Broken/Bad eggs : "
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorDarkdOrange"
+                                android:layout_weight="3"
+                                />
+                            <TextView
+                                android:id="@+id/rv_bad_eggs"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorDarkdOrange"
+                                android:layout_weight="2"
+                                />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:text="Collected on : "
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorDarkdOrange"
+                                android:layout_weight="3"
+                                />
+                            <TextView
+                                android:id="@+id/rv_date_egg"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorDarkdOrange"
+                                android:layout_weight="2"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".ChickenManagement">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorBackground"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,7 +48,7 @@
                 android:layout_weight="4"
                 android:text="View time table"
                 android:layout_marginRight="8dp"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/my_button"
                 android:textColor="@color/white"/>
             <Button
                 android:id="@+id/show_enroll"
@@ -56,7 +58,7 @@
                 android:text="+"
                 android:layout_marginLeft="8dp"
                 android:textSize="32sp"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/my_button"
                 android:textColor="@color/white"/>
         </LinearLayout>
 
@@ -73,54 +75,166 @@
                 android:layout_height="wrap_content"
                 android:text="Vaccination Details"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:layout_marginTop="8px"
-                android:textSize="18dp"
-                android:background="@color/colorDordgerblue"
-                android:textColor="@color/colorWhite"/>
-                <Spinner
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            <Spinner
-                android:layout_marginTop="8dp"
+                android:textSize="20dp"
+                android:textColor="@color/colorBlack"/>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
-            <EditText
-                android:id="@+id/etdate"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <Spinner
+                            android:id="@+id/chick_flock_name_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/my_spinner"
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Select Date"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/my_input"
-                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <Spinner
+                            android:id="@+id/vaccine_name_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/my_spinner"
+                            />
+                    </LinearLayout>
 
-                />
-            <EditText
-                android:id="@+id/txtacquisitiondate"
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:hint="Note"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:gravity="start"
-                android:background="@drawable/my_input"
-                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <EditText
+                            android:id="@+id/etdate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Select Date"
+                            android:background="@drawable/my_tinput"
+
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <EditText
+                            android:id="@+id/txt_vaccine_note"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:hint="Note"
+                            android:gravity="start"
+                            android:background="@drawable/my_tinput"
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
 
-                />
+
             <Button
+                android:id="@+id/btn_enroll_flock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Enroll flock"
-                android:background="@color/colorDordgerblue"
+                android:background="@drawable/my_button"
                 android:textColor="@color/colorWhite"
                 android:textSize="18dp"
                 android:layout_marginTop="16dp"
                 />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:padding="8dp"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/colorDarkdOrange"
+                android:text="Vaccinate your chicken with Newcastle  Bronchitis after every 2 months"/>
         </LinearLayout>
+<!--   enrolled flocks     -->
+
+        <LinearLayout
+            android:id="@+id/available_enrolled_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="All enrolled flock"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/enrolled_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+<!--        start of vaccination table-->
         <LinearLayout
             android:id="@+id/vaccination_table"
             android:layout_width="match_parent"
@@ -134,10 +248,10 @@
             android:layout_height="wrap_content"
             android:text="Vaccination table"
             android:gravity="center"
+            android:textStyle="bold"
             android:layout_marginTop="8px"
-            android:textSize="18dp"
-            android:background="@color/colorDordgerblue"
-            android:textColor="@color/colorWhite"/>
+            android:textSize="20dp"
+            android:textColor="@color/colorBlack"/>
    <HorizontalScrollView
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -164,8 +278,8 @@
                    android:gravity="center"
                    android:layout_marginTop="8px"
                    android:textSize="18dp"
-                   android:background="@color/colorDordgerblue"
-                   android:textColor="@color/colorWhite"/>
+                   android:background="@drawable/my_topdowngradient"
+                   android:textColor="@color/colorBlack"/>
 
                <TextView
                    android:layout_width="match_parent"
@@ -175,8 +289,8 @@
                    android:layout_marginTop="8px"
                    android:padding="8dp"
                    android:textSize="18dp"
-                   android:background="@color/colorDordgerblue"
-                   android:textColor="@color/colorWhite"/>
+                   android:background="@drawable/my_topdowngradient"
+                   android:textColor="@color/colorBlack"/>
                <TextView
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
@@ -185,8 +299,8 @@
                    android:layout_marginTop="8px"
                    android:textSize="18dp"
                    android:padding="8dp"
-                   android:background="@color/colorDordgerblue"
-                   android:textColor="@color/colorWhite"/>
+                   android:background="@drawable/my_topdowngradient"
+                   android:textColor="@color/colorBlack"/>
                <TextView
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
@@ -195,8 +309,8 @@
                    android:layout_marginTop="8px"
                    android:padding="8dp"
                    android:textSize="18dp"
-                   android:background="@color/colorDordgerblue"
-                   android:textColor="@color/colorWhite"/>
+                   android:background="@drawable/my_topdowngradient"
+                   android:textColor="@color/colorBlack"/>
            </TableRow>
 
 
@@ -220,7 +334,7 @@
                <TextView
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
-                   android:text="Newcatle and \n Bronchitis"
+                   android:text="Mareks"
                    android:gravity="center"
                    android:background="@drawable/my_table"
                    android:padding="8dp"
@@ -245,7 +359,366 @@
                    android:textSize="18dp"
                    />
            </TableRow>
+           <TableRow
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@color/colorBackground"
+               >
 
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="7 days "
+                   android:gravity="center"
+                   android:textSize="18dp"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+
+                   />
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Newcastle and \n Bronchitis"
+                   android:gravity="center"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Eye Drop"
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Vaccine should be live \n (Preserved in Refrigerator)"
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+           </TableRow>
+           <TableRow
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+
+               >
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="14 days "
+                   android:gravity="center"
+                   android:textSize="18dp"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+
+                   />
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Gumboro"
+                   android:gravity="center"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Eye Drop"
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Vaccine should be live \n (Preserved in Refrigerator)"
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+           </TableRow>
+           <TableRow
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@color/colorBackground"
+               >
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="21 days "
+                   android:gravity="center"
+                   android:textSize="18dp"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+
+                   />
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Gumboro"
+                   android:gravity="center"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Drinking Water"
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Not Live. \n Mix with drinking water"
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+           </TableRow>
+           <TableRow
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+
+               >
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="28 days "
+                   android:gravity="center"
+                   android:textSize="18dp"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+
+                   />
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Newcatle and \n Bronchitis"
+                   android:gravity="center"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Eye Drop"
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Vaccine should be live \n (Preserved in Refrigerator)"
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+           </TableRow>
+           <TableRow
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@color/colorBackground"
+               >
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="6 Weeks "
+                   android:gravity="center"
+                   android:textSize="18dp"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+
+                   />
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Fowl Pox"
+                   android:gravity="center"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Wing Stab"
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Vaccine should be live \n (Preserved in Refrigerator) "
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+           </TableRow>
+           <TableRow
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+
+               >
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="8 Weeks "
+                   android:gravity="center"
+                   android:textSize="18dp"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+
+                   />
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Fowl Typhoid"
+                   android:gravity="center"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Thigh Muscle"
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Vaccine should be live \n (Preserved in Refrigerator)"
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+           </TableRow>
+           <TableRow
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+
+               >
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="16 Weeks "
+                   android:gravity="center"
+                   android:textSize="18dp"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+
+                   />
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Dewormer"
+                   android:gravity="center"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Drinking Water"
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Mix with the drinking water"
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+           </TableRow>
+           <TableRow
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@color/colorBackground"
+               >
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="After Every 2 Months "
+                   android:gravity="center"
+                   android:textSize="18dp"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+
+                   />
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Newcatle and \n Bronchitis"
+                   android:gravity="center"
+                   android:background="@drawable/my_table"
+                   android:padding="8dp"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Eye Drop"
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:text="Vaccine should be live \n (Preserved in Refrigerator) "
+                   android:gravity="center"
+                   android:padding="8dp"
+                   android:background="@drawable/my_table"
+                   android:textSize="18dp"
+                   />
+           </TableRow>
            <TableRow
                android:layout_width="match_parent"
                android:layout_height="match_parent" />
@@ -257,6 +730,14 @@
 
    </HorizontalScrollView>
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:padding="8dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/colorDarkdOrange"
+            android:text="Vaccinate your chicken with Newcastle  Bronchitis after every 2 months"/>
     </LinearLayout>
 
 </ScrollView>

@@ -1,9 +1,11 @@
 package com.example.smartpoultry;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -14,29 +16,38 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 public class ChickenManagement extends AppCompatActivity {
-    ChickDao chickDao;
+DbHelper dbHelper;
+ChickenAdapter chickenAdapter;
 EditText etcheckenDate,flockname,flocknumber,flockmode,flocknote;
 Spinner chickenspinner;
-Button btnaddflock,btnviewchicken,btndeletechicken;
-TextView totalfocknumber;
+Button btnaddflock,btnviewchicken,btndeletechicken,togglechickenview;
+TextView totalfocknumber, tvflockcount,totalnumber;
     String flockbread;
+    LinearLayout availablechickenflock,addnewchickenflock;
+    RecyclerView recyclerView;
+    ArrayList<String> name,number,bread,date_acq,note;
 DatePickerDialog.OnDateSetListener setListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chicken_management);
 
+         dbHelper = new DbHelper(this);
 
-
+            availablechickenflock = findViewById(R.id.available_chicken_layout);
+        addnewchickenflock = findViewById(R.id.add_new_chicken_flock);
+        togglechickenview = findViewById(R.id.toggle_view_chicken);
           chickenspinner = findViewById(R.id.chicken_spinner);
           btnaddflock = findViewById(R.id.save_flock);
         flockname = findViewById(R.id.txt_flock_name);
@@ -47,9 +58,37 @@ DatePickerDialog.OnDateSetListener setListener;
         totalfocknumber = findViewById(R.id.total_chicken_display);
         btnviewchicken = findViewById(R.id.btn_view_chicken);
         btndeletechicken = findViewById(R.id.btn_delete_chicken);
+        tvflockcount = findViewById(R.id.tv_chicken_flock_count);
+        totalnumber = findViewById(R.id.tv_chicken_number);
 
-        ChickDatabase chickDatabase = ChickDatabase.getInstance(getApplicationContext());
-        chickDao = chickDatabase.chickDao();
+
+
+        // initilize array list
+        name = new ArrayList<>();
+        number = new ArrayList<>();
+        bread = new ArrayList<>();
+        date_acq = new ArrayList<>();
+        note = new ArrayList<>();
+        recyclerView = findViewById(R.id.chicken_recycler_view);
+        chickenAdapter = new ChickenAdapter(this,name,number,bread,date_acq,note);
+        recyclerView.setAdapter(chickenAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        displayallChickenFlock();
+
+
+
+       // hide add flock view by default
+        addnewchickenflock.setVisibility(View.GONE);
+        // display snapshot of sum of data in database
+        try {
+            totalfocknumber.setText(String.format(": %s",dbHelper.ChickenSum()));
+            totalnumber.setText("" + dbHelper.ChickenSum());
+            tvflockcount.setText("" + dbHelper.ChickenFlockCount());
+            }catch(Exception ex){
+            //Toast.makeText(this, "Error" + ex, Toast.LENGTH_SHORT).show();
+            showMessage("Chicken Management Error","Message : "+ex.getMessage());
+        }
+
 
 
         Calendar calendar = Calendar.getInstance();
@@ -106,52 +145,92 @@ DatePickerDialog.OnDateSetListener setListener;
         btnaddflock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Chicken chicken = new Chicken(0,flockname.getText().toString(),flockbread,flocknumber.getText().toString(),flockmode.getText().toString(),etcheckenDate.getText().toString(),flocknote.getText().toString());
-
-                insertChicken(chicken);
+                // add chicken
+                try {
+                    boolean isInserted = dbHelper.insertChicken(flockname.getText().toString(),flockbread.toString(),flocknumber.getText().toString(),flockmode.getText().toString(),etcheckenDate.getText().toString(),flocknote.getText().toString());
+                    if (isInserted == true) {
+                        //Toast.makeText(ChickenManagement.this, "Chicken flock added", Toast.LENGTH_SHORT).show();
+                        showMessage("Chicken Management Success","Message : Chicken flock details added successfully");
+                    } else {
+                        //Toast.makeText(ChickenManagement.this, "Chicken flock Not added", Toast.LENGTH_SHORT).show();
+                        showMessage("Chicken Management Error","Message :  Failed to save flock details try again");
+                    }
+                }catch(Exception ex){
+                   // Toast.makeText(ChickenManagement.this, "Error" + ex, Toast.LENGTH_SHORT).show();
+                    showMessage("Chicken Management Error","Message : "+ex.getMessage());
+                }
             }
         });
+
+
 
 
         btnviewchicken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showMessage("Chicks", chickDao.getAllChicken().get(0).flockNumber);
+                // view chicken
             }
         });
 
-
+       // set toggle to button
+        togglechickenview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                togglechickenview();
+            }
+        });
 
     }
 
+    private void displayallChickenFlock() {
+        Cursor  cursor = dbHelper.getAllChickenData();
+        if (cursor.getCount() == 0){
+            //Toast.makeText(this, "No Flock yet", Toast.LENGTH_SHORT).show();
+            showMessage("Chicken Management","No flock added yet");
+            return;
+        }else{
+            while(cursor.moveToNext()){
+                name.add(cursor.getString(1));
+                number.add(cursor.getString(3));
+                bread.add(cursor.getString(2));
+                date_acq.add(cursor.getString(5));
+                note.add(cursor.getString(6));
 
-    // my popup
-    public  void showMessage(String title,String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            }
+        }
+    }
+
+    // toggle view in chicken activity
+    public void togglechickenview(){
+        if (addnewchickenflock.getVisibility() == View.GONE){
+            availablechickenflock.setVisibility(View.GONE);
+            addnewchickenflock.setVisibility(View.VISIBLE);
+            togglechickenview.setText("View Flock");
+            togglechickenview.setTextSize(16);
+        }else{
+            availablechickenflock.setVisibility(View.VISIBLE);
+            addnewchickenflock.setVisibility(View.GONE);
+            togglechickenview.setText("+");
+            togglechickenview.setTextSize(32);
+
+        }
+
+    }
+
+    public void showMessage(String title,String message){
+        androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(message);
+        builder.setIcon(getResources().getDrawable(R.drawable.chicken2));
+        builder.setPositiveButton("OK",null);
         builder.show();
     }
 
 
-    public void insertChicken(Chicken chicken){
-        new InsertChickenAsynTask(chickDao).execute(chicken);
-        Toast.makeText(getApplication(), "Added Chicken", Toast.LENGTH_SHORT).show();
-    }
-    private static class InsertChickenAsynTask extends AsyncTask<Chicken,Void,Void> {
 
-        private ChickDao chickDao;
 
-        private InsertChickenAsynTask(ChickDao chickDao){
-            this.chickDao = chickDao;
-        }
 
-        @Override
-        protected Void doInBackground(Chicken... chickens) {
-            chickDao.insertChicken(chickens[0]);
-            return null;
-        }
-    }
+
 
 }

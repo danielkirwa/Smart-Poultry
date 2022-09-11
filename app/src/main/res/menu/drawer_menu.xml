@@ -2,22 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view"
+    
     >
     <group android:checkableBehavior="single">
         <item android:title="Housing"
             android:icon="@drawable/ic_housing"
+            android:id="@+id/menu_housing"
             />
         <item android:title="Feeds production"
             android:icon="@drawable/ic_feeds"
+            android:id="@+id/menu_feeds"
             />
         <item android:title="Development"
             android:icon="@drawable/ic_development"
+            android:id="@+id/menu_development"
             />
     </group>
     <item android:title="More Features">
         <menu>
             <item android:title="App guide"
                 android:icon="@drawable/ic_guide"
+                android:id="@+id/menu_guide"
                 />
             <item android:title="App setting"
                 android:icon="@drawable/ic_settings"
@@ -28,6 +33,7 @@
         <menu>
             <item android:title="Logout"
                 android:icon="@drawable/ic_logout_24dp"
+                android:id="@+id/menu_logout"
                 />
         </menu>
     </item>

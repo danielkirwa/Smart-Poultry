@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".ChickenManagement">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorBackground"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,6 +27,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="Total Chick    :"/>
             <TextView
+                android:id="@+id/tv_total_chick"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -33,83 +36,279 @@
                 android:layout_marginTop="14dp"
                 android:text="@string/null_string"/>
         </LinearLayout>
-
         <LinearLayout
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_chick_flock_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total flocks : 3"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_total_chick_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
+                    android:text="Total Chicks : 765"/>
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/toggle_view_chick"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="2"
+                android:background="@drawable/my_button"
+                android:text="+"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/available_chick_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:orientation="vertical">
-            <EditText
-                android:id="@+id/txt_chick_name"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Chick flock name"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/my_input"
-                android:layout_marginTop="16dp"
+                android:text="All available flock"
+                android:textStyle="bold"
+                android:textSize="20sp"
                 />
-            <Spinner
-                android:id="@+id/chick_spinner"
-                android:layout_marginTop="8dp"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/my_spinner"
-
-                />
-            <EditText
-                android:id="@+id/txt_chick_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Chick number"
-                android:inputType="number"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/my_input"
-                android:layout_marginTop="16dp"
-                />
-            <EditText
-                android:id="@+id/txt_chick_modeacq"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Acquisition mode"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/my_input"
-                android:layout_marginTop="16dp"
-                />
-            <Spinner
-                android:id="@+id/chick_age_spinner"
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_spinner"
-
-                />
-            <EditText
-                android:id="@+id/etchickdate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Date of acquisition"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/my_input"
-                android:layout_marginTop="16dp"
-
-                />
-            <EditText
-                android:id="@+id/txt_chick_note"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:hint="Note"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:gravity="start"
-                android:background="@drawable/my_input"
-                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/chick_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
 
 
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/add_new_chick_flock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add new chicken flock"
+                android:textStyle="bold"
+                android:textSize="20sp"
                 />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <EditText
+                            android:id="@+id/txt_chick_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Chick flock name"
+                            android:background="@drawable/my_tinput"
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <Spinner
+                            android:id="@+id/chick_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/my_spinner"
+
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <EditText
+                            android:id="@+id/txt_chick_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Chick number"
+                            android:inputType="number"
+                            android:background="@drawable/my_tinput"
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <EditText
+                            android:id="@+id/txt_chick_modeacq"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Acquisition mode"
+                            android:background="@drawable/my_tinput"
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <Spinner
+                            android:id="@+id/chick_age_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/my_spinner"
+
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <EditText
+                            android:id="@+id/etchickdate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Date of acquisition"
+                            android:background="@drawable/my_tinput"
+
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <EditText
+                            android:id="@+id/txt_chick_note"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:hint="Note"
+                            android:gravity="start"
+                            android:background="@drawable/my_tinput"
+
+
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+
+
+
+
+
 
             <Button
                 android:id="@+id/btn_add_chick"

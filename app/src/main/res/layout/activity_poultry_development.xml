@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PoultryDevelopment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="13dp"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="20sp"
+                android:textColor="@color/colorWhite"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="10dp"
+                android:text="Development Stages   :"/>
+            <TextView
+                android:id="@+id/total_chicken_display"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"
+                android:layout_marginTop="14dp"
+                android:text="active"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
+                android:textSize="22dp"
+                android:layout_margin="8dp"
+                android:text="Chicken Development cycle"
+                />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:paddingTop="8dp"
+                android:src="@drawable/chicken_development"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/stage_note"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="8dp"
+                android:src="@drawable/chicken_development_milestone"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/colorDarkdOrange"
+                android:text="Weeks 1-4: Baby chicks"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/milestone_one"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/colorDarkdOrange"
+                android:text="Weeks 5-15: The teenage chicken stage"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="During weeks 5 and 6, chicks will go through visible growth changes, including new primary feathers and a developing pecking order. Growing birds are now referred to differently. Pullet is the term for a teenage female, while a young male is called a cockerel. Between weeks 7 and 15, the physical differences between genders will become even more obvious.   Continue to feed a complete starter-grower feed, like \n Purina Organic Starter-Grower,  Purina."
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/colorDarkdOrange"
+                android:text="Weeks 16-17: When to switch from chick starter to layer feed"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Around weeks 16-17, people begin to check their nesting boxes for the coveted first egg.  At this point, consider layer feed options so you can make a smooth transition.   As compared to starter-grower, a layer chicken feed has less protein and more calcium. This added calcium is important for egg production.Look for a chicken layer feed that matches your flock goals – whether that’s \n Purina Organic Layer Pellets or Crumbles, Purina Layena."
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/colorDarkdOrange"
+                android:text="Week 18: At what age do chickens start laying eggs"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="When birds reach 18 weeks old or when the first egg arrives,slowly transition to a layer feed.Make the transition gradually to prevent digestive upset.   On our farm,we have found it’s best to transition over time rather than all at once.  We mix the starter and layer feed evenly for four or five days. If birds are used to crumbles, start with a crumble layer feed. The same goes with pellets. The more similar the two feeds are, the smoother the transition will go."
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/colorDarkdOrange"
+                android:text="Month 18: Molting chickens"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Once the first egg has been laid, it’s business as usual for a while. Around 18 months,  feathers will likely begin to cover the coop floor. Welcome to the season of molting chickens,The first molt usually occurs in the fall when days become shorter.Your flock will take a break from egg laying and shed feathers for a few weeks. Protein is the key nutrient in a flock’s diet to keep them strong during molt.  This is because feathers are made of 80-85 percent protein, whereas eggshells are primarily calcium.  When molt begins, switch to a complete feed with 20 percent protein like Purina and Flock Raiser."
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textColor="@color/colorDarkdOrange"
+                android:text="Laying hen retirement"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/milestone_six"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NOTE : For better development of your chicken ensure that you feed your chicken whit appropriate feeds"
+                android:layout_marginBottom="16dp"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    </ScrollView>

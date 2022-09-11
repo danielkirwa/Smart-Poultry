@@ -25,6 +25,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="Total Eggs   :"/>
             <TextView
+                android:id="@+id/tv_total_eggs"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -34,67 +35,231 @@
                 android:text="@string/null_string"/>
         </LinearLayout>
         <LinearLayout
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_total_egg_collection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
+                    android:text="Total eggs : 2256"/>
+                <TextView
+                    android:id="@+id/tv_total_good_egg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
+                    android:text="Total eggs : 2256"/>
+                <TextView
+                    android:id="@+id/tv_total_bad_egg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
+                    android:text="Total spoiled : 124"/>
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/toggle_view_egg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="+"
+                android:layout_marginLeft="8dp"
+                android:textSize="32sp"
+                android:background="@drawable/my_button"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/available_egg_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Egg collection per flock"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/egg_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/add_new_egg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:orientation="vertical">
-
-            <Spinner
-
-                android:id="@+id/chicken_flock_name_spinner"
-                android:layout_marginTop="16dp"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/my_spinner"
-
+                android:text="Select flock name to Add "
+                android:textStyle="bold"
+                android:textSize="20sp"
                 />
-            <EditText
-                android:id="@+id/txt_eggs_tray"
-                android:inputType="number"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Number of Tray"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/my_input"
-                android:layout_marginTop="16dp"
-                />
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/txt_egg_not_tray"
+                        <Spinner
+                            android:id="@+id/chicken_flock_name_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/my_spinner" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Eggs NOT in Tray"
-                android:inputType="number"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/my_input"
-                android:layout_marginTop="16dp"
-                />
-            <EditText
-                android:id="@+id/txt_bad_eggs"
-                android:inputType="number"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <EditText
+                            android:id="@+id/txt_eggs_tray"
+                            android:inputType="number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Number of Tray"
+                            android:background="@drawable/my_tinput"
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Bad eggs"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/my_input"
-                android:layout_marginTop="16dp"
-                />
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <EditText
+                            android:id="@+id/txt_egg_not_tray"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Eggs NOT in Tray"
+                            android:inputType="number"
+                            android:background="@drawable/my_tinput"
+                            />
+                    </LinearLayout>
 
-            <EditText
-                android:id="@+id/txt_egg_date"
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/my_input"
-                android:hint="Date of collection"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <EditText
+                            android:id="@+id/txt_bad_eggs"
+                            android:inputType="number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Bad eggs"
+                            android:background="@drawable/my_tinput"
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <EditText
+                            android:id="@+id/txt_egg_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/my_tinput"
+                            android:hint="Date of collection"
+
+                            />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
 
-                />
+
+
+
+
 
             <Button
                 android:id="@+id/btn_add_eggs"
