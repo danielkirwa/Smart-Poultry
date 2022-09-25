@@ -5,6 +5,10 @@
     
     >
     <group android:checkableBehavior="single">
+        <item android:title="Farm Reduction"
+            android:icon="@drawable/ic_reduction_24"
+            android:id="@+id/menu_reduction"
+            />
         <item android:title="Housing"
             android:icon="@drawable/ic_housing"
             android:id="@+id/menu_housing"
@@ -29,6 +33,7 @@
                 />
         </menu>
     </item>
+
     <item android:title="Action">
         <menu>
             <item android:title="Logout"

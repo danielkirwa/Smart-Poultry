@@ -121,6 +121,15 @@ public class Dashboard extends AppCompatActivity {
                          Intent intentappguide = new Intent(Dashboard.this,AppGuide.class);
                          startActivity(intentappguide);
                          return true;
+                     case R.id.menu_reduction:
+                         Intent intentfarmreduction = new Intent(Dashboard.this,FarmReduction.class);
+                         startActivity(intentfarmreduction);
+                         return true;
+                     case R.id.menu_logout:
+                         Intent intentlogout = new Intent(Dashboard.this,AuthActivity.class);
+                         startActivity(intentlogout);
+                         return true;
+
                  }
                  return true;
              }

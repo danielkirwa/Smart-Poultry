@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FarmReduction">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="13dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="10dp"
+            android:text="Farm record update    :"/>
+        <TextView
+            android:id="@+id/total_chicken_display"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="14dp"
+            android:text="Active"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/calleggproduction"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="5dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="22sp"
+                        android:textStyle="italic"
+                        android:text="Select record to update"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                       <RadioGroup
+                           android:id="@+id/radio_selected_reduction"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:orientation="vertical"
+                           >
+                           <RadioButton
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:text="Egg management (Update)"
+                               android:textColor="@color/colorDarkdOrange"
+                               android:textSize="18sp"
+                               android:layout_marginTop="8dp"
+                               android:textStyle="bold"/>
+                           <RadioButton
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:text="Chicken management (Update)"
+                               android:textColor="@color/colorDarkdOrange"
+                               android:textSize="18sp"
+                               android:layout_marginTop="8dp"
+                               android:textStyle="bold"/>
+                           <RadioButton
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:text="Chick management (Update)"
+                               android:textColor="@color/colorDarkdOrange"
+                               android:textSize="18sp"
+                               android:layout_marginTop="8dp"
+                               android:textStyle="bold"/>
+
+                       </RadioGroup>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+<!--   update eggs-->
+        <LinearLayout
+            android:id="@+id/pop_update_eggs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="5dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="22sp"
+                        android:layout_weight="6"
+                        android:textStyle="italic"
+                        android:text="Egg record to update"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+                    <ImageButton
+                        android:id="@+id/close_edit_eggs"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_btn_close_24"
+                        android:background="@color/colorTrasparent"
+
+                        />
+                </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/colorDarkdOrange"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/my_input"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:inputType="number"
+                        android:hint="Number of tray"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/my_input"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:inputType="number"
+                        android:hint="Number of eggs not in tray"/>
+                    <TextView
+                        android:id="@+id/update_date_egg"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:hint="Select Date"
+                        android:background="@drawable/my_input"/>
+
+                    <Spinner
+                        android:id="@+id/egg_reduction_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/my_input" />
+
+
+                    <Button
+                        android:id="@+id/btn_add_eggs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Update eggs"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/my_button"
+
+                        />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+<!--        update chicken-->
+        <LinearLayout
+            android:id="@+id/pop_update_chicken"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="5dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="22sp"
+                            android:layout_weight="6"
+                            android:textStyle="italic"
+                            android:text="Update chicken flocks"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+                        <ImageButton
+                            android:id="@+id/close_edit_chicken"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_btn_close_24"
+                            android:background="@color/colorTrasparent"
+
+                            />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/colorDarkdOrange"/>
+
+                    <Spinner
+                        android:id="@+id/chicken_flock_reduction_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/my_input" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/my_input"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:inputType="number"
+                        android:hint="Current flock number"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/my_input"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:inputType="number"
+                        android:hint="Number of chicken reduced"/>
+
+                    <TextView
+                        android:id="@+id/update_date_chicken"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:hint="Select Date"
+                        android:background="@drawable/my_input"/>
+
+                    <Spinner
+                        android:id="@+id/chicken_reduction_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/my_input" />
+
+
+                    <Button
+                        android:id="@+id/btn_update_chicken"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Update Chicken flock"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/my_button"
+
+                        />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!--        update chick-->
+        <LinearLayout
+            android:id="@+id/pop_update_chick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="5dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="22sp"
+                            android:layout_weight="6"
+                            android:textStyle="italic"
+                            android:text="Update chick flocks"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+                        <ImageButton
+                            android:id="@+id/close_edit_chick"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_btn_close_24"
+                            android:background="@color/colorTrasparent"
+
+                            />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/colorDarkdOrange"/>
+
+                    <Spinner
+                        android:id="@+id/chick_flock_reduction_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/my_input" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/my_input"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:inputType="number"
+                        android:hint="Current flock number"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/my_input"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:inputType="number"
+                        android:hint="Number of chick reduced"/>
+
+                    <TextView
+                        android:id="@+id/update_date_chick"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:hint="Select Date"
+                        android:background="@drawable/my_input"/>
+
+                    <Spinner
+                        android:id="@+id/chick_reduction_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/my_input" />
+
+
+                    <Button
+                        android:id="@+id/btn_update_chick"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Update Chicken flock"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/my_button"
+
+                        />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

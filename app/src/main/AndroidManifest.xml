@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AppSettings"
+            android:exported="false" />
+        <activity
+            android:name=".FarmReduction"
+            android:exported="false" />
+        <activity
             android:name=".AppGuide"
             android:exported="false" />
         <activity
@@ -38,9 +44,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".PoultryAlarm"
+
+        <receiver
+            android:name=".PoultryAlarm"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>
