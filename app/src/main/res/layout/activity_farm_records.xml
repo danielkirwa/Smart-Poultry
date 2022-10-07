@@ -181,14 +181,12 @@
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:orientation="vertical">
-                        <ImageView
+
+                        <com.github.mikephil.charting.charts.BarChart
                             android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/null_string"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/chicken2" />
+                            android:layout_height="220dp"
+                            android:id="@+id/flock_bar_graph"/>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -280,6 +278,26 @@
                                     android:layout_weight="2"
                                     />
                             </LinearLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="@color/colorDarkdOrange"/>
+                            <com.github.mikephil.charting.charts.BarChart
+                                android:layout_width="match_parent"
+                                android:layout_height="220dp"
+                                android:id="@+id/flock_number_bar_graph"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:text="Flock Numbers Report "
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorBlack"
+                                />
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -385,14 +403,10 @@
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:orientation="vertical">
-                        <ImageView
+                        <com.github.mikephil.charting.charts.BarChart
                             android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/null_string"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/eggs" />
+                            android:layout_height="300dp"
+                            android:id="@+id/egg_bar_graph"/>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

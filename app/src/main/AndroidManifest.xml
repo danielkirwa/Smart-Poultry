@@ -37,7 +37,8 @@
         <activity android:name=".ChickManagement" />
         <activity android:name=".ChickenManagement" />
         <activity android:name=".VaccinationManagement" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

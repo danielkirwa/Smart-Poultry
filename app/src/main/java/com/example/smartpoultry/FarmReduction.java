@@ -12,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class FarmReduction extends AppCompatActivity {
     TextView updateDateEgg;
     ImageButton closeEggs,closeChicken,closeChick;
     LinearLayout popupEggs,popupChicken,popupChick;
+    RadioGroup radioGroup;
 
     Calendar calendar = Calendar.getInstance();
     final int year = calendar.get(Calendar.YEAR);
@@ -49,6 +51,8 @@ public class FarmReduction extends AppCompatActivity {
         popupEggs = findViewById(R.id.pop_update_eggs);
         popupChick = findViewById(R.id.pop_update_chick);
         popupChicken = findViewById(R.id.pop_update_chicken);
+        radioGroup = findViewById(R.id.radio_selected_reduction);
+
 
 
 
@@ -136,6 +140,12 @@ public class FarmReduction extends AppCompatActivity {
 
 
 
+          radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+              @Override
+              public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+              }
+          });
 
 
         // get date
