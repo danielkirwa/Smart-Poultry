@@ -54,7 +54,7 @@ public class FarmReduction extends AppCompatActivity {
         radioGroup = findViewById(R.id.radio_selected_reduction);
 
 
-
+        hideAllPopUpUpdate();
 
         // spinner array egg reduction reasons
 
@@ -142,8 +142,21 @@ public class FarmReduction extends AppCompatActivity {
 
           radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
               @Override
-              public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
+              public void onCheckedChanged(RadioGroup radioGroup, int checkedID) {
+                  switch (checkedID){
+                      case R.id.radio_update_egg:
+                          hideAllPopUpUpdate();
+                          popupEggs.setVisibility(View.VISIBLE);
+                          break;
+                      case R.id.radio_update_chick:
+                          hideAllPopUpUpdate();
+                          popupChick.setVisibility(View.VISIBLE);
+                          break;
+                      case R.id.radio_update_chicken:
+                          hideAllPopUpUpdate();
+                          popupChicken.setVisibility(View.VISIBLE);
+                          break;
+                  }
               }
           });
 
@@ -174,27 +187,27 @@ public class FarmReduction extends AppCompatActivity {
         closeEggs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                radioGroup.clearCheck();
                 popupEggs.setVisibility(View.GONE);
             }
         });
         closeChicken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              popupChicken.setVisibility(View.GONE);
+
+                radioGroup.clearCheck();
+                popupChicken.setVisibility(View.GONE);
             }
         });
         closeChick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              popupChick.setVisibility(View.GONE);
+
+                radioGroup.clearCheck();
+                popupChick.setVisibility(View.GONE);
             }
         });
-
-
-
-
-
-
 
 
 
@@ -223,5 +236,11 @@ public class FarmReduction extends AppCompatActivity {
             }
         },year,month,day);
         datePickerDialog.show();
+    }
+
+    public void hideAllPopUpUpdate(){
+        popupChick.setVisibility(View.GONE);
+        popupChicken.setVisibility(View.GONE);
+        popupEggs.setVisibility(View.GONE);
     }
 }
